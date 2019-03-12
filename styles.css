@@ -3,19 +3,27 @@
     height: 100px;
 }
 
-* {
-    border: 1px solid red;
-}
+/** {*/
+    /*border: 1px solid red;*/
+/*}*/
 
 .searchFilter{
     height: 100%;
-    position: fixed;
     float: left;
     width: 20%;
 }
 
-.content{
+#content{
     width: 80%;
     height: 1000px;
     float: right;
+}
+
+ul{
+    list-style-type: none;
+}
+
+#n1, #n2, #n3, #n4, #n5, #n6 {
+    font-weight: bold;
+    border: 1px black solid;
 }
