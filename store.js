@@ -154,12 +154,7 @@ function filterContent(type, array){
 
 
 checkout.addEventListener('click', (event) => {
-    for (let l=0; l < cartItems.length; l++){
-        cartTotal += (cartItems[l].price * cartQty[l]);
-        console.log(cartItems[l].price);
-        console.log(cartQty[l]);
-
-    }   console.log(cartTotal);
+    calcCartTotal();
 
     let productName = "";
     for(let i = 0; i < cartItems.length; i++) {
@@ -174,3 +169,9 @@ checkout.addEventListener('click', (event) => {
     removeContent(cartBar);
     cartItems =[];
 });
+
+function calcCartTotal(){
+    for (let l=0; l < cartItems.length; l++){
+        cartTotal += (cartItems[l].price * cartQty[l]);
+    }
+}
