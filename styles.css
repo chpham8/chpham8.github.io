@@ -16,13 +16,13 @@
 }
 
 #content{
-    width: 60.7%;
+    width: 60.5%;
     height: 1000px;
     float: left;
     border-style: solid;
 }
 
-.cartBar {
+#cartBar {
     width: 19%;
     height: 1000px;
     float: right;

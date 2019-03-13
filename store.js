@@ -12,6 +12,7 @@ function itemCreator(id, name, price, type, image, description){
 
 
 let content = document.getElementById('content');
+let cartBar = document.getElementById('cartBar');
 
 let switchConsole = new itemCreator("n1", "Nintendo Switch", 299, "console", "image", "Introducing Nintendo Switch, the new home video game system from Nintendo. In addition to providing single and multiplayer thrills at home, the Nintendo Switch system can be taken on the go so players can enjoy a full home console experience anytime, anywhere. The mobility of a handheld is now added to the power of a home gaming system, with unprecedented new play styles brought to life by the two new Joy-Con controllers.");
 let dsConsole = new itemCreator("n2", "Nintendo 3DS", 100, "console", "image", "Experience incredible gameplay featuring real 3D graphics, with no need for special glasses. Nintendo 3DS is a breakthrough in portable entertainment, a truly cutting-edge piece of hardware. It has to be seen to be believed.");
@@ -22,7 +23,8 @@ let marioKart = new itemCreator("n6", "Mario Kart 9 Deluxe", 60, "game", "image"
 
 let items = [switchConsole, dsConsole, joyCon, proCon, smashBro, marioKart];
 let cartButton = document.getElementsByClassName("addToCart");
-
+let qtyNum = document.getElementsByClassName('quantity');
+let cartItems =[];
 
 
 
@@ -36,7 +38,7 @@ for (let i = 0; i<items.length; i++) {
     item.appendChild(name);
     list.appendChild(item);
     item = document.createElement('li');
-    let price = document.createTextNode(items[i].price);
+    let price = document.createTextNode("$" + items[i].price);
     item.appendChild(price);
     list.appendChild(item);
 
@@ -46,6 +48,7 @@ for (let i = 0; i<items.length; i++) {
     for (let j = 1; j < 10; j++) {
         let option = document.createElement("option");
         option.value = j;
+        option.className = "quantity";
         let optionText = document.createTextNode(j);
         option.appendChild(optionText);
         select.appendChild(option);
@@ -61,22 +64,41 @@ for (let i = 0; i<items.length; i++) {
     item.appendChild(form);
     list.appendChild(item);
 
-
-
-
-
     item = document.createElement('li');
     let description = document.createTextNode(items[i].description);
     item.appendChild(description);
     list.appendChild(item);
     itemContainer.appendChild(list);
     content.appendChild(itemContainer);
-
 }
 
 for(let j = 0; j < items.length; j++) {
     cartButton[j].addEventListener('click', (event) => {
         let obj = items.find(o => o.id == cartButton[j].value);
         console.log(obj);
+        cartItems.push(obj);
+        console.log(cartItems);
+
+        cartView(j);
     });
+}
+
+function cartView(k) {
+        let itemContainer = document.createElement("div");
+        itemContainer.id = cartItems[k].id;
+        let list = document.createElement('ul');
+        let item = document.createElement('li');
+        let name = document.createTextNode(cartItems[k].name);
+        item.appendChild(name);
+        list.appendChild(item);
+        // item = document.createElement('li');
+        // let price = document.createTextNode("$" + cartItems[k].price);
+        // item.appendChild(price);
+        // list.appendChild(item);
+        item = document.createElement('li');
+        let qty = document.createTextNode("qty: " + qtyNum[k].value);
+        item.appendChild(qty);
+        list.appendChild(item);
+        itemContainer.appendChild(list);
+        cartBar.appendChild(itemContainer);
 }
