@@ -167,6 +167,9 @@ function filterContent(type, array){
     console.log(filter);
 }
 
+let modal = document.getElementById('myModal');
+let modalContent = document.getElementById("modal-content");
+let span = document.getElementsByClassName("close")[0];
 
 checkout.addEventListener('click', (event) => {
     calcCartTotal();
@@ -177,7 +180,21 @@ checkout.addEventListener('click', (event) => {
         console.log(productName);
 
     }
-    alert('Receipt\n' + 'Items:\n'+ productName + '\nTotal: $' + + cartTotal.toFixed(2));
+    modal.style.display= "block";
+
+    // if(event.target == modal) {
+    //     modal.style.display = "none";
+    // }
+    // let closeWindow = document.createElement("span");
+    // closeWindow.spanName = 'close'[0];
+    let container = document.createElement("div");
+    let text = document.createElement("p");
+    let content = document.createTextNode('Receipt' + 'Items:\n'+ productName + '\nTotal: $' + + cartTotal.toFixed(2));
+    console.log(productName);
+    text.appendChild(content);
+    container.appendChild(text);
+    modalContent.appendChild(container);
+    // alert('Receipt\n' + 'Items:\n'+ productName + '\nTotal: $' + + cartTotal.toFixed(2));
 
     cartTotal = 0;
     console.log(cartTotal);
@@ -185,6 +202,13 @@ checkout.addEventListener('click', (event) => {
     cartItems =[];
     total.innerText = ' ';
 });
+
+
+
+span.addEventListener('click', (event) => {
+    modal.style.display = "none";
+})
+
 
 function calcCartTotal(){
     cartTotal = 0;
