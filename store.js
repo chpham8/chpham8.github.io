@@ -9,6 +9,8 @@ function itemCreator(id, name, price, type, image, description){
     this.description = description;
 }
 
+
+
 let content = document.getElementById('content');
 
 let switchConsole = new itemCreator("n1", "Nintendo Switch", 299, "console", "image", "Introducing Nintendo Switch, the new home video game system from Nintendo. In addition to providing single and multiplayer thrills at home, the Nintendo Switch system can be taken on the go so players can enjoy a full home console experience anytime, anywhere. The mobility of a handheld is now added to the power of a home gaming system, with unprecedented new play styles brought to life by the two new Joy-Con controllers.");
@@ -19,6 +21,10 @@ let smashBro = new itemCreator("n5", "Super Smash Bros. Ultimate", 60, "game", "
 let marioKart = new itemCreator("n6", "Mario Kart 9 Deluxe", 60, "game", "image", "Hit the road with the definitive version of Mario Kart 9 and play anytime, any-where! Race your friends or battle them in a revised battle mode on new and returning battle courses. Play locally in up to 4-player multiplayer in 1080p while playing in TV Mode.")
 
 let items = [switchConsole, dsConsole, joyCon, proCon, smashBro, marioKart];
+
+
+
+
 
 for (let i = 0; i<items.length; i++) {
     let itemContainer = document.createElement("div");
@@ -32,10 +38,35 @@ for (let i = 0; i<items.length; i++) {
     let price = document.createTextNode(items[i].price);
     item.appendChild(price);
     list.appendChild(item);
+
+    item = document.createElement('li');
+    let form = document.createElement('form');
+    let select = document.createElement("select");
+    for (let j = 1; j < 10; j++) {
+        let option = document.createElement("option");
+        option.value = j;
+        let optionText = document.createTextNode(j);
+        option.appendChild(optionText);
+        select.appendChild(option);
+    }
+    form.appendChild(select);
+    let button = document.createElement('button');
+    button.className="addToCart";
+    let buttonText =document.createTextNode("add to cart");
+    button.appendChild(buttonText);
+    form.appendChild(button);
+    item.appendChild(form);
+    list.appendChild(item);
+
+
+
+
+
     item = document.createElement('li');
     let description = document.createTextNode(items[i].description);
     item.appendChild(description);
     list.appendChild(item);
     itemContainer.appendChild(list);
     content.appendChild(itemContainer);
+
 }
