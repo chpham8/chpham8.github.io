@@ -35,6 +35,7 @@ for (let i = 0; i<items.length; i++) {
     itemContainer.id = items[i].id;
     let img = document.createElement('img');
     img.src = items[i].image;
+    itemContainer.appendChild(img);
     let list = document.createElement('ul');
     let item = document.createElement('li');
     let name = document.createTextNode(items[i].name);
