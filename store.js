@@ -160,10 +160,33 @@ function removeContent(container) {
 }
 
 function filterContent(type, array){
-    for (let o=0; o<array.length; o++){
-        if (array[o].type === type){
+    for (let o=0; o<array.length; o++) {
+        if (array[o].type === type) {
             filter.push(array[o]);
         }
     }
     console.log(filter);
 }
+
+
+checkout.addEventListener('click', (event) => {
+    for (let l=0; l < cartItems.length; l++){
+        cartTotal += (cartItems[l].price * cartQty[l]);
+        console.log(cartItems[l].price);
+        console.log(cartQty[l]);
+
+    }   console.log(cartTotal);
+
+    let productName = "";
+    for(let i = 0; i < cartItems.length; i++) {
+        productName += cartItems[i].name + ', Qty: ' + cartQty[i] + '\n';
+        console.log(productName);
+
+    }
+    alert('Receipt\n' + 'Items:\n'+ productName + '\nTotal: $' + + cartTotal.toFixed(2));
+
+        cartTotal = 0;
+        console.log(cartTotal);
+
+
+});
