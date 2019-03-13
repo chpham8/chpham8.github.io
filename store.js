@@ -16,6 +16,7 @@ let allFilter = document.getElementById('all');
 let consolesFilter = document.getElementById('consoles');
 let accessoriesFilter = document.getElementById('accessories');
 let gameFilter = document.getElementById('games');
+let total = document.getElementById('total');
 
 let switchConsole = new itemCreator("n1", "Nintendo Switch", 299, "console", "images/switch.jpg", "Introducing Nintendo Switch, the new home video game system from Nintendo. In addition to providing single and multiplayer thrills at home, the Nintendo Switch system can be taken on the go so players can enjoy a full home console experience anytime, anywhere. The mobility of a handheld is now added to the power of a home gaming system, with unprecedented new play styles brought to life by the two new Joy-Con controllers.");
 let dsConsole = new itemCreator("n2", "Nintendo 3DS", 100, "console", "images/3ds.jpg", "Experience incredible gameplay featuring real 3D graphics, with no need for special glasses. Nintendo 3DS is a breakthrough in portable entertainment, a truly cutting-edge piece of hardware. It has to be seen to be believed.");
@@ -42,33 +43,40 @@ function addCartButton(array) {
         cartButton[i].addEventListener('click', (event) => {
             let obj = array.find(o => o.id === cartButton[i].value);
             cartItems.push(obj);
-            cartView(i);
-
+            let index = cartItems.indexOf(obj);
+            let itemIndex = i;
+            console.log(index);
+            cartView(index, itemIndex);
+            calcCartTotal();
+            total.innerText = cartTotal;
         })
     }
 }
 
+console.log(qtyNum);
 
-function cartView(k) {
+function cartView(index, itemIndex) {
         let itemContainer = document.createElement("div");
         itemContainer.className = 'cartItems';
         let list = document.createElement('ul');
         let item = document.createElement('li');
-        let name = document.createTextNode(cartItems[k].name);
+        let name = document.createTextNode(cartItems[index].name);
         item.appendChild(name);
         list.appendChild(item);
         item = document.createElement('li');
-        let qty = document.createTextNode("qty: " + qtyNum[k].value);
+        console.log(qtyNum[index].value);
+        let qty = document.createTextNode("qty: " + qtyNum[itemIndex].value);
         item.appendChild(qty);
         list.appendChild(item);
         itemContainer.appendChild(list);
         cartBar.appendChild(itemContainer);
-        cartQty.push(qtyNum[k].value);
+        cartQty.push(qtyNum[index].value);
 }
 
 allFilter.addEventListener('click', (event) => {
    removeContent(content);
    displayContent(items);
+   addCartButton(items);
 });
 
 consolesFilter.addEventListener('click', (event) => {
@@ -76,6 +84,7 @@ consolesFilter.addEventListener('click', (event) => {
     filter = [];
     filterContent('console', items);
     displayContent(filter);
+    addCartButton(filter);
 });
 
 accessoriesFilter.addEventListener('click', (event) => {
@@ -83,6 +92,7 @@ accessoriesFilter.addEventListener('click', (event) => {
    filter = [];
    filterContent('accessory', items);
    displayContent(filter);
+   addCartButton(filter);
 });
 
 gameFilter.addEventListener('click', (event) => {
@@ -90,6 +100,7 @@ gameFilter.addEventListener('click', (event) => {
    filter = [];
    filterContent('game', items);
    displayContent(filter);
+   addCartButton(filter);
 });
 
 function displayContent(array) {
@@ -176,6 +187,7 @@ checkout.addEventListener('click', (event) => {
 });
 
 function calcCartTotal(){
+    cartTotal = 0;
     for (let l=0; l < cartItems.length; l++){
         cartTotal += (cartItems[l].price * cartQty[l]);
     }
