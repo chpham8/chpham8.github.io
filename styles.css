@@ -16,7 +16,7 @@
 }
 
 #content{
-    width: 60.5%;
+    width: 60%;
     height: 1000px;
     float: left;
     border-style: solid;
@@ -36,4 +36,8 @@ ul{
 #n1, #n2, #n3, #n4, #n5, #n6 {
     font-weight: bold;
     border: 1px black solid;
+}
+
+#checkout {
+    width: 100%;
 }

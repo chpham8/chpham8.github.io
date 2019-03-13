@@ -25,6 +25,7 @@ let items = [switchConsole, dsConsole, joyCon, proCon, smashBro, marioKart];
 let cartButton = document.getElementsByClassName("addToCart");
 let qtyNum = document.getElementsByClassName('quantity');
 let cartItems =[];
+// let checkout = document.getElementById(checkout)
 
 
 
@@ -45,10 +46,10 @@ for (let i = 0; i<items.length; i++) {
     item = document.createElement('li');
     let form = document.createElement('form');
     let select = document.createElement("select");
+    select.className = "quantity";
     for (let j = 1; j < 10; j++) {
         let option = document.createElement("option");
         option.value = j;
-        option.className = "quantity";
         let optionText = document.createTextNode(j);
         option.appendChild(optionText);
         select.appendChild(option);
@@ -75,30 +76,30 @@ for (let i = 0; i<items.length; i++) {
 for(let j = 0; j < items.length; j++) {
     cartButton[j].addEventListener('click', (event) => {
         let obj = items.find(o => o.id == cartButton[j].value);
-        console.log(obj);
         cartItems.push(obj);
-        console.log(cartItems);
-
         cartView(j);
     });
 }
 
 function cartView(k) {
         let itemContainer = document.createElement("div");
-        itemContainer.id = cartItems[k].id;
-        let list = document.createElement('ul');
-        let item = document.createElement('li');
-        let name = document.createTextNode(cartItems[k].name);
-        item.appendChild(name);
-        list.appendChild(item);
-        // item = document.createElement('li');
-        // let price = document.createTextNode("$" + cartItems[k].price);
-        // item.appendChild(price);
-        // list.appendChild(item);
-        item = document.createElement('li');
-        let qty = document.createTextNode("qty: " + qtyNum[k].value);
-        item.appendChild(qty);
-        list.appendChild(item);
-        itemContainer.appendChild(list);
-        cartBar.appendChild(itemContainer);
+        if(cartItems[k].id == null){
+        } else {
+            itemContainer.id = cartItems[k].id;
+            let list = document.createElement('ul');
+            let item = document.createElement('li');
+            let name = document.createTextNode(cartItems[k].name);
+            item.appendChild(name);
+            list.appendChild(item);
+            // item = document.createElement('li');
+            // let price = document.createTextNode("$" + cartItems[k].price);
+            // item.appendChild(price);
+            // list.appendChild(item);
+            item = document.createElement('li');
+            let qty = document.createTextNode("qty: " + qtyNum[k].value);
+            item.appendChild(qty);
+            list.appendChild(item);
+            itemContainer.appendChild(list);
+            cartBar.appendChild(itemContainer);
+        }
 }
