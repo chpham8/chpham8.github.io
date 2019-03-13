@@ -1,14 +1,14 @@
 .header{
     width: 100%;
-    height: 100px;
-    background-color: yellow;
+    height: 150px;
+    background-color: #E60109;
 }
 
-.headerLogo {
-    font-size: 80px;
-    font-family: Arial;
+.headerLogo img {
+    width:500px;
 
 }
+
 
 /** {*/
     /*border: 1px solid red;*/
