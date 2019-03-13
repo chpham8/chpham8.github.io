@@ -35,14 +35,19 @@ let filter = [];
 let cartTotal = 0;
 
 displayContent(items);
+addCartButton(items);
 
-for(let j = 0; j < items.length; j++) {
-    cartButton[j].addEventListener('click', (event) => {
-        let obj = items.find(o => o.id === cartButton[j].value);
-        cartItems.push(obj);
-        cartView(j);
-    });
+function addCartButton(array) {
+    for (let i = 0; i < array.length; i++) {
+        cartButton[i].addEventListener('click', (event) => {
+            let obj = array.find(o => o.id === cartButton[i].value);
+            cartItems.push(obj);
+            cartView(i);
+
+        })
+    }
 }
+
 
 function cartView(k) {
         let itemContainer = document.createElement("div");
