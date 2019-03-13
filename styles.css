@@ -44,12 +44,18 @@ ul{
     list-style-type: none;
 }
 
-#n1, #n2, #n3, #n4, #n5, #n6 {
+.contentItems {
     font-weight: bold;
     border: 1px black solid;
     float: right;
 }
 
+
 #checkout {
     width: 100%;
+}
+
+.cartItems {
+    font-weight: bold;
+    border: 1px black solid;
 }
