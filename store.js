@@ -74,11 +74,9 @@ for (let i = 0; i<items.length; i++) {
 
 }
 
-console.log(cartButton[0].value);
-
 for(let j = 0; j < items.length; j++) {
     cartButton[j].addEventListener('click', (event) => {
-        let obj = items.find(o => o.name == this.value);
+        let obj = items.find(o => o.id == cartButton[j].value);
         console.log(obj);
     });
 }
