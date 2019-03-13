@@ -48,7 +48,7 @@ function addCartButton(array) {
             console.log(index);
             cartView(index, itemIndex);
             calcCartTotal();
-            total.innerText = cartTotal;
+            total.innerText = 'Total: $' + cartTotal.toFixed(2);
         })
     }
 }
@@ -64,13 +64,12 @@ function cartView(index, itemIndex) {
         item.appendChild(name);
         list.appendChild(item);
         item = document.createElement('li');
-        console.log(qtyNum[index].value);
         let qty = document.createTextNode("qty: " + qtyNum[itemIndex].value);
         item.appendChild(qty);
         list.appendChild(item);
         itemContainer.appendChild(list);
         cartBar.appendChild(itemContainer);
-        cartQty.push(qtyNum[index].value);
+        cartQty.push(qtyNum[itemIndex].value);
 }
 
 allFilter.addEventListener('click', (event) => {
@@ -184,6 +183,7 @@ checkout.addEventListener('click', (event) => {
     console.log(cartTotal);
     removeContent(cartBar);
     cartItems =[];
+    total.innerText = ' ';
 });
 
 function calcCartTotal(){
