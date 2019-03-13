@@ -106,13 +106,19 @@ checkout.addEventListener('click', (event) => {
         cartTotal += (cartItems[l].price * cartQty[l]);
         console.log(cartItems[l].price);
         console.log(cartQty[l]);
+
+    }   console.log(cartTotal);
+
+    let productName = "";
+    for(let i = 0; i < cartItems.length; i++) {
+        productName += cartItems[i].name + ', Qty: ' + cartQty[i] + '\n';
+        console.log(productName);
+
     }
-    let checkoutContainer = document.createElement("div");
-    let list = document.createElement('ul');
-    let item = document.createElement('li');
-    let total = document.createTextNode('Total: $' + cartTotal.toFixed(2));
-    item.appendChild(total);
-    list.appendChild(item);
-    checkoutContainer.appendChild(list);
-    cartBar.appendChild(checkoutContainer);
+    alert('Receipt\n' + 'Items:\n'+ productName + '\nTotal: $' + + cartTotal.toFixed(2));
+
+        cartTotal = 0;
+        console.log(cartTotal);
+
+
 });
