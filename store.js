@@ -21,6 +21,7 @@ let smashBro = new itemCreator("n5", "Super Smash Bros. Ultimate", 60, "game", "
 let marioKart = new itemCreator("n6", "Mario Kart 9 Deluxe", 60, "game", "image", "Hit the road with the definitive version of Mario Kart 9 and play anytime, any-where! Race your friends or battle them in a revised battle mode on new and returning battle courses. Play locally in up to 4-player multiplayer in 1080p while playing in TV Mode.")
 
 let items = [switchConsole, dsConsole, joyCon, proCon, smashBro, marioKart];
+let cartButton = document.getElementsByClassName("addToCart");
 
 
 
@@ -51,6 +52,8 @@ for (let i = 0; i<items.length; i++) {
     }
     form.appendChild(select);
     let button = document.createElement('button');
+    button.value=items[i].id;
+    button.type='button';
     button.className="addToCart";
     let buttonText =document.createTextNode("add to cart");
     button.appendChild(buttonText);
@@ -69,4 +72,13 @@ for (let i = 0; i<items.length; i++) {
     itemContainer.appendChild(list);
     content.appendChild(itemContainer);
 
+}
+
+console.log(cartButton[0].value);
+
+for(let j = 0; j < items.length; j++) {
+    cartButton[j].addEventListener('click', (event) => {
+        let obj = items.find(o => o.name == this.value);
+        console.log(obj);
+    });
 }
