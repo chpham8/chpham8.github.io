@@ -9,8 +9,6 @@ function itemCreator(id, name, price, type, image, description){
     this.description = description;
 }
 
-
-
 let content = document.getElementById('content');
 let cartBar = document.getElementById('cartBar');
 
@@ -25,10 +23,9 @@ let items = [switchConsole, dsConsole, joyCon, proCon, smashBro, marioKart];
 let cartButton = document.getElementsByClassName("addToCart");
 let qtyNum = document.getElementsByClassName('quantity');
 let cartItems =[];
-// let checkout = document.getElementById(checkout)
-
-
-
+let cartQty = [];
+let cartTotal = 0;
+let checkout = document.getElementById('checkout');
 
 for (let i = 0; i<items.length; i++) {
     let itemContainer = document.createElement("div");
@@ -78,7 +75,7 @@ for (let i = 0; i<items.length; i++) {
 
 for(let j = 0; j < items.length; j++) {
     cartButton[j].addEventListener('click', (event) => {
-        let obj = items.find(o => o.id == cartButton[j].value);
+        let obj = items.find(o => o.id === cartButton[j].value);
         cartItems.push(obj);
         cartView(j);
     });
@@ -86,23 +83,33 @@ for(let j = 0; j < items.length; j++) {
 
 function cartView(k) {
         let itemContainer = document.createElement("div");
-        if(cartItems[k].id == null){
-        } else {
-            itemContainer.id = cartItems[k].id;
-            let list = document.createElement('ul');
-            let item = document.createElement('li');
-            let name = document.createTextNode(cartItems[k].name);
-            item.appendChild(name);
-            list.appendChild(item);
-            // item = document.createElement('li');
-            // let price = document.createTextNode("$" + cartItems[k].price);
-            // item.appendChild(price);
-            // list.appendChild(item);
-            item = document.createElement('li');
-            let qty = document.createTextNode("qty: " + qtyNum[k].value);
-            item.appendChild(qty);
-            list.appendChild(item);
-            itemContainer.appendChild(list);
-            cartBar.appendChild(itemContainer);
-        }
+        itemContainer.id = cartItems[k].id;
+        let list = document.createElement('ul');
+        let item = document.createElement('li');
+        let name = document.createTextNode(cartItems[k].name);
+        item.appendChild(name);
+        list.appendChild(item);
+        item = document.createElement('li');
+        let qty = document.createTextNode("qty: " + qtyNum[k].value);
+        item.appendChild(qty);
+        list.appendChild(item);
+        itemContainer.appendChild(list);
+        cartBar.appendChild(itemContainer);
+        cartQty.push(qtyNum[k].value);
 }
+
+checkout.addEventListener('click', (event) => {
+    for (let l=0; l < cartItems.length; l++){
+        cartTotal += (cartItems[l].price * cartQty[l]);
+        console.log(cartItems[l].price);
+        console.log(cartQty[l]);
+    }
+    let checkoutContainer = document.createElement("div");
+    let list = document.createElement('ul');
+    let item = document.createElement('li');
+    let total = document.createTextNode('Total: $' + cartTotal.toFixed(2));
+    item.appendChild(total);
+    list.appendChild(item);
+    checkoutContainer.appendChild(list);
+    cartBar.appendChild(checkoutContainer);
+});
