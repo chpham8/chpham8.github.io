@@ -11,12 +11,13 @@ function itemCreator(id, name, price, type, image, description){
 
 let content = document.getElementById('content');
 let cartBar = document.getElementById('cart');
-let checkout = document.getElementById('checkout');
+let checkout = document.getElementById('checkoutBox');
 let allFilter = document.getElementById('all');
 let consolesFilter = document.getElementById('consoles');
 let accessoriesFilter = document.getElementById('accessories');
 let gameFilter = document.getElementById('games');
 let total = document.getElementById('total');
+let emptyMessage = document.getElementById('emptyCart');
 
 let switchConsole = new itemCreator("n1", "Nintendo Switch", 299, "console", "images/switch.jpg", "Introducing Nintendo Switch, the new home video game system from Nintendo. In addition to providing single and multiplayer thrills at home, the Nintendo Switch system can be taken on the go so players can enjoy a full home console experience anytime, anywhere. The mobility of a handheld is now added to the power of a home gaming system, with unprecedented new play styles brought to life by the two new Joy-Con controllers.");
 let dsConsole = new itemCreator("n2", "Nintendo 3DS", 100, "console", "images/3ds.jpg", "Experience incredible gameplay featuring real 3D graphics, with no need for special glasses. Nintendo 3DS is a breakthrough in portable entertainment, a truly cutting-edge piece of hardware. It has to be seen to be believed.");
@@ -29,7 +30,6 @@ let items = [switchConsole, dsConsole, joyCon, proCon, smashBro, marioKart];
 
 let cartButton = document.getElementsByClassName("addToCart");
 let qtyNum = document.getElementsByClassName('quantity');
-let contentEl = document.getElementsByClassName('contentItem');
 
 let cartItems =[];
 let cartQty = [];
@@ -50,25 +50,29 @@ function addCartButton(array) {
             console.log(index);
             cartView(index, itemIndex);
             calcCartTotal();
-            total.innerText = 'Total: $' + cartTotal.toFixed(2);
-            total.style.visibility = 'visible';
+            total.innerText = 'Subtotal: ' + '$' + cartTotal.toFixed(2);
+            emptyMessage.style.visibility = 'hidden';
+            emptyMessage.style.position = 'fixed';
             checkout.style.visibility = 'visible';
         })
     }
 }
 
-console.log(qtyNum);
-
 function cartView(index, itemIndex) {
         let itemContainer = document.createElement("div");
         itemContainer.className = 'cartItems';
+        let img = document.createElement('img');
+        img.src = cartItems[index].image;
+        itemContainer.appendChild(img);
         let list = document.createElement('ul');
         let item = document.createElement('li');
+        let h4 = document.createElement('h4');
         let name = document.createTextNode(cartItems[index].name);
-        item.appendChild(name);
+        h4.appendChild(name);
+        item.appendChild(h4);
         list.appendChild(item);
         item = document.createElement('li');
-        let qty = document.createTextNode("qty: " + qtyNum[itemIndex].value);
+        let qty = document.createTextNode("Quantity: " + qtyNum[itemIndex].value);
         item.appendChild(qty);
         list.appendChild(item);
         itemContainer.appendChild(list);
@@ -234,16 +238,11 @@ function calcCartTotal(){
 }
 
 function emptyCart() {
-    let container = document.createElement('div');
-    let text = document.createElement("p");
-    let content = document.createTextNode('Your cart is empty.');
-    text.appendChild(content);
-    container.appendChild(text)
-    cartBar.appendChild(container);
     cartTotal = 0;
     removeContent(cartBar);
     cartItems =[];
     total.innerText = ' ';
-    total.style.visibility = 'hidden';
     checkout.style.visibility = 'hidden';
+    emptyMessage.style.visibility = 'visible';
+    emptyMessage.style.position = 'static';
 }
