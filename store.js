@@ -29,6 +29,7 @@ let items = [switchConsole, dsConsole, joyCon, proCon, smashBro, marioKart];
 
 let cartButton = document.getElementsByClassName("addToCart");
 let qtyNum = document.getElementsByClassName('quantity');
+let contentEl = document.getElementsByClassName('contentItem');
 
 let cartItems =[];
 let cartQty = [];
@@ -37,6 +38,7 @@ let cartTotal = 0;
 
 displayContent(items);
 addCartButton(items);
+emptyCart();
 
 function addCartButton(array) {
     for (let i = 0; i < array.length; i++) {
@@ -49,6 +51,8 @@ function addCartButton(array) {
             cartView(index, itemIndex);
             calcCartTotal();
             total.innerText = 'Total: $' + cartTotal.toFixed(2);
+            total.style.visibility = 'visible';
+            checkout.style.visibility = 'visible';
         })
     }
 }
@@ -92,6 +96,7 @@ consolesFilter.addEventListener('click', (event) => {
     consolesFilter.className = 'is-active';
     accessoriesFilter.className = '';
     gameFilter.className = '';
+
 });
 
 accessoriesFilter.addEventListener('click', (event) => {
@@ -129,8 +134,10 @@ function displayContent(array) {
         itemContainer.appendChild(img);
         let list = document.createElement('ul');
         let item = document.createElement('li');
+        let h3 = document.createElement('h3');
         let name = document.createTextNode(array[n].name);
-        item.appendChild(name);
+        h3.appendChild(name);
+        item.appendChild(h3);
         list.appendChild(item);
         item = document.createElement('li');
         let price = document.createTextNode("$" + array[n].price);
@@ -212,23 +219,31 @@ checkout.addEventListener('click', (event) => {
     modalContent.appendChild(container);
     // alert('Receipt\n' + 'Items:\n'+ productName + '\nTotal: $' + + cartTotal.toFixed(2));
 
-    cartTotal = 0;
-    console.log(cartTotal);
-    removeContent(cartBar);
-    cartItems =[];
-    total.innerText = ' ';
+    emptyCart();
 });
-
-
 
 span.addEventListener('click', (event) => {
     modal.style.display = "none";
 })
-
 
 function calcCartTotal(){
     cartTotal = 0;
     for (let l=0; l < cartItems.length; l++){
         cartTotal += (cartItems[l].price * cartQty[l]);
     }
+}
+
+function emptyCart() {
+    let container = document.createElement('div');
+    let text = document.createElement("p");
+    let content = document.createTextNode('Your cart is empty.');
+    text.appendChild(content);
+    container.appendChild(text)
+    cartBar.appendChild(container);
+    cartTotal = 0;
+    removeContent(cartBar);
+    cartItems =[];
+    total.innerText = ' ';
+    total.style.visibility = 'hidden';
+    checkout.style.visibility = 'hidden';
 }

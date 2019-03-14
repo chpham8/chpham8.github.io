@@ -1,10 +1,7 @@
-*{
+body {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-}
-
-html {
-    box-sizing: border-box;
 }
 
 .header{
@@ -13,9 +10,17 @@ html {
     background-color: #E60109;
 }
 
-.headerLogo img {
-    width:450px;
+.headerLogo{
+
 }
+
+.header img {
+    width:450px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
 
 .searchFilter{
     height: 1000px;
@@ -25,7 +30,6 @@ html {
     /*border-radius: 10px;*/
     /*border-width: thin;*/
     margin-top: 10px;
-    margin-left: 10px;
 }
 
 #content{
@@ -38,22 +42,37 @@ html {
 
 #cartBar {
     width: 20%;
-    margin-top: 10px;
+    /*margin-top: 10px;*/
     float: right;
     margin-right: 10px;
 }
 
-#cart {
-    /*border-style: solid;*/
-    /*border-radius: 10px;*/
-    /*border-width: thin;*/
-    height: 1200px;
+#cartTitle{
+    margin-top: 10px;
 }
 
-img {
+/*#cart {*/
+    /*!*border-style: solid;*!*/
+    /*!*border-radius: 10px;*!*/
+    /*!*border-width: thin;*!*/
+    /*!*height: 1200px;*!*/
+/*}*/
+
+.contentItems img {
     float: left;
     width: 150px;
     height: 150px;
+    padding: 10px;
+}
+
+.quantity {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 3px 7px;
 }
 
 ul {
@@ -61,7 +80,7 @@ ul {
 }
 
 .searchFilter ul {
-    padding: 0;
+    padding-left: 10px;
     font-weight: bold;
     /*display: inline-block;*/
     font-size: 20px;
@@ -75,12 +94,22 @@ ul {
 }
 
 .contentItems {
-    font-weight: bold;
+    /*font-weight: bold;*/
     border: black solid thin;
     float: left;
     border-radius: 10px;
     margin-bottom: 5px;
     padding: 10px;
+    line-height: 1.2;
+    width: 100%;
+}
+
+.contentItems h3 {
+    margin-bottom: 10px;
+}
+
+.contentItems ul {
+    padding-right: 20px;
 }
 
 #checkout {
@@ -97,6 +126,7 @@ ul {
     padding:6px 24px;
     text-decoration:none;
     text-shadow:0px 1px 0px #1570cd;
+    visibility: hidden;
 }
 
 .cartItems {
@@ -113,9 +143,8 @@ ul {
     border-radius:6px;
     border:1px solid grey;
     padding-top: 10px;
+    visibility: hidden;
 }
-
-
 
 /* The Modal (background) */
 .modal {
@@ -160,4 +189,11 @@ ul {
 .is-active {
     background-color: #FF8001;
     color: white;
+}
+
+.addToCart {
+    font-weight: 700;
+    background-color: #eaeef1;
+    border-radius: 3px;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.2), 0 1px 2px rgba(0,0,0,.2), inset 0 1px 2px rgba(255,255,255,.7);
 }
