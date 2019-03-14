@@ -47,7 +47,6 @@ function addCartButton(array) {
             cartItems.push(obj);
             let index = cartItems.indexOf(obj);
             let itemIndex = i;
-            console.log(index);
             cartView(index, itemIndex);
             calcCartTotal();
             total.innerText = 'Subtotal: ' + '$' + cartTotal.toFixed(2);
@@ -191,13 +190,11 @@ function filterContent(type, array){
             filter.push(array[o]);
         }
     }
-    console.log(filter);
 }
 
 let modal = document.getElementById('myModal');
 let modalContent = document.getElementById("modal-content");
 let span = document.getElementsByClassName("close")[0];
-
 
 let container = document.createElement("div");
 let text = document.createElement("p");
@@ -212,42 +209,31 @@ checkout.addEventListener('click', (event) => {
     let productName = "";
     for(let i = 0; i < cartItems.length; i++) {
         productName += cartItems[i].name + ', Qty: ' + cartQty[i] + '\n';
-        console.log(productName);
         let container = document.createElement("div");
         let text = document.createElement("p");
         let content = document.createTextNode(cartItems[i].name + ' qty: ' + cartQty[i] + '\n $' + cartItems[i].price) ;
-        console.log(productName);
         text.appendChild(content);
         container.appendChild(text);
         modalContent.appendChild(container);
-
     }
 
     container = document.createElement("div");
     text = document.createElement("p");
     content = document.createTextNode('Total: $' + cartTotal.toFixed(2)) ;
-    console.log(productName);
     text.appendChild(content);
     container.appendChild(text);
     modalContent.appendChild(container);
 
-
     modal.style.display= "block";
-
-    // if(event.target == modal) {
-    //     modal.style.display = "none";
-    // }
-    // let closeWindow = document.createElement("span");
-    // closeWindow.spanName = 'close'[0];
-
-    // alert('Receipt\n' + 'Items:\n'+ productName + '\nTotal: $' + + cartTotal.toFixed(2));
 
     emptyCart();
 });
 
 span.addEventListener('click', (event) => {
     modal.style.display = "none";
-})
+    emptyCart();
+    location.reload();
+});
 
 function calcCartTotal(){
     cartTotal = 0;
