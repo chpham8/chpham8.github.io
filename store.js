@@ -198,6 +198,14 @@ let modal = document.getElementById('myModal');
 let modalContent = document.getElementById("modal-content");
 let span = document.getElementsByClassName("close")[0];
 
+
+let container = document.createElement("div");
+let text = document.createElement("p");
+let contentDisplay = document.createTextNode("Thank you for shopping!\nReceipt: ") ;
+text.appendChild(contentDisplay);
+container.appendChild(text);
+modalContent.appendChild(container);
+
 checkout.addEventListener('click', (event) => {
     calcCartTotal();
 
@@ -205,8 +213,25 @@ checkout.addEventListener('click', (event) => {
     for(let i = 0; i < cartItems.length; i++) {
         productName += cartItems[i].name + ', Qty: ' + cartQty[i] + '\n';
         console.log(productName);
+        let container = document.createElement("div");
+        let text = document.createElement("p");
+        let content = document.createTextNode(cartItems[i].name + ' qty: ' + cartQty[i] + '\n $' + cartItems[i].price) ;
+        console.log(productName);
+        text.appendChild(content);
+        container.appendChild(text);
+        modalContent.appendChild(container);
 
     }
+
+    container = document.createElement("div");
+    text = document.createElement("p");
+    content = document.createTextNode('Total: $' + cartTotal.toFixed(2)) ;
+    console.log(productName);
+    text.appendChild(content);
+    container.appendChild(text);
+    modalContent.appendChild(container);
+
+
     modal.style.display= "block";
 
     // if(event.target == modal) {
@@ -214,13 +239,7 @@ checkout.addEventListener('click', (event) => {
     // }
     // let closeWindow = document.createElement("span");
     // closeWindow.spanName = 'close'[0];
-    let container = document.createElement("div");
-    let text = document.createElement("p");
-    let content = document.createTextNode('Receipt' + 'Items:\n'+ productName + '\nTotal: $' + + cartTotal.toFixed(2));
-    console.log(productName);
-    text.appendChild(content);
-    container.appendChild(text);
-    modalContent.appendChild(container);
+
     // alert('Receipt\n' + 'Items:\n'+ productName + '\nTotal: $' + + cartTotal.toFixed(2));
 
     emptyCart();
