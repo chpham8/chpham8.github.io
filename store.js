@@ -76,6 +76,10 @@ allFilter.addEventListener('click', (event) => {
    removeContent(content);
    displayContent(items);
    addCartButton(items);
+   allFilter.className = 'is-active';
+   consolesFilter.className = '';
+   accessoriesFilter.className = '';
+   gameFilter.className = '';
 });
 
 consolesFilter.addEventListener('click', (event) => {
@@ -84,6 +88,10 @@ consolesFilter.addEventListener('click', (event) => {
     filterContent('console', items);
     displayContent(filter);
     addCartButton(filter);
+    allFilter.className = '';
+    consolesFilter.className = 'is-active';
+    accessoriesFilter.className = '';
+    gameFilter.className = '';
 });
 
 accessoriesFilter.addEventListener('click', (event) => {
@@ -92,6 +100,10 @@ accessoriesFilter.addEventListener('click', (event) => {
    filterContent('accessory', items);
    displayContent(filter);
    addCartButton(filter);
+   allFilter.className = '';
+   consolesFilter.className = '';
+   accessoriesFilter.className = 'is-active';
+   gameFilter.className = '';
 });
 
 gameFilter.addEventListener('click', (event) => {
@@ -100,6 +112,10 @@ gameFilter.addEventListener('click', (event) => {
    filterContent('game', items);
    displayContent(filter);
    addCartButton(filter);
+   allFilter.className = '';
+   consolesFilter.className = '';
+   accessoriesFilter.className = '';
+   gameFilter.className = 'is-active';
 });
 
 function displayContent(array) {
